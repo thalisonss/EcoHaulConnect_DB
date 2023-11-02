@@ -1,0 +1,75 @@
+Table tb_clientes {
+  id_cliente number [pk]
+  nm_cliente varchar(30) [not null]
+  nm_email varchar(100) [not null, unique]
+  nr_telefone varchar(11) [not null, unique]
+  nr_cpf varchar(11) [not null, unique]
+  dt_nascimento date [not null]
+  ds_senha varchar(150) [not null]
+  st_ativo number [not null]
+  id_endereco number [not null]
+}
+
+Table tb_enderecos {
+  id_endereco number [pk]
+  nm_rua varchar(100) [not null]
+  nr_numero varchar(100) [not null]
+  nm_bairro varchar(100) [not null]
+  nm_cidade varchar(100) [not null]
+  ds_uf varchar(2) [not null]
+  nr_cep varchar(8) [not null]
+  nm_complemento varchar(100)
+  st_ativo number [not null]
+  nr_lat float [not null]
+  nr_long float [not null]
+}
+
+Table tb_servicos {
+  id_servico number [pk]
+  nr_valor number [not null]
+  cd_confirmacao varchar(12)
+  dt_agendamento date [not null]
+  dt_criacao date [not null]
+  dt_atualizacao date [not null]
+  st_ativo number [not null]
+  id_endereco number [not null]
+  id_transportador number [not null]
+  id_cliente number [not null]
+}
+
+Table tb_transportadores {
+  id_transportador number [pk]
+  nm_transportador varchar(30) [not null]
+  nm_email varchar(100) [not null]
+  nr_cpf varchar(11) [not null]
+  nr_telefone varchar(11) [not null]
+  dt_nascimento date [not null]
+  ds_senha varchar(150) [not null]
+  st_ativo number [not null]
+  nr_raio_servico number [not null]
+  id_endereco number [not null]
+}
+
+Table tb_itens {
+  id_item number [pk]
+  tp_item varchar(200) [not null]
+  nr_altura number
+  nr_comprimento number
+  nr_largura number
+  nr_peso number
+  ds_descricao varchar(255)
+  id_servico number [not null]
+}
+
+Table tb_logs {
+  id_log number [pk]
+  nm_tabela varchar(200)
+  ds_antigo number
+  dt_nascimento date
+}
+
+Ref: tb_clientes.id_endereco > tb_enderecos.id_endereco
+Ref: tb_servicos.id_cliente > tb_clientes.id_cliente
+Ref: tb_servicos.id_endereco > tb_enderecos.id_endereco
+Ref: tb_servicos.id_transportador > tb_transportadores.id_transportador
+Ref: tb_itens.id_servico > tb_servicos.id_servico
