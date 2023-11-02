@@ -62,10 +62,12 @@ Table tb_itens {
 }
 
 Table tb_logs {
-  id_log number [pk]
-  nm_tabela varchar(200)
-  ds_antigo number
-  dt_nascimento date
+  id_log number(19, 0) [pk]
+  id_pktabela number(19, 0)
+  tp_exec CHAR(6)
+  tx_valorantigo CLOB
+  tx_valornovo CLOB
+  dt_criacao DATE
 }
 
 Ref: tb_clientes.id_endereco > tb_enderecos.id_endereco
