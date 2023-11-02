@@ -1,3 +1,24 @@
+-- 1. Setar atributo “ativo” de serviços para false quando cliente for desativado 
+ 
+ CREATE OR REPLACE TRIGGER desativar_servico_de_cliente_inativo
+    AFTER UPDATE ON TB_CLIENTES
+    FOR EACH ROW
+        DECLARE
+            v_ativo_cliente TB_CLIENTES.ST_ATIVO%TYPE := :NEW.ST_ATIVO;
+            v_id_cliente TB_CLIENTES.ID_CLIENTE%TYPE := :NEW.ID_CLIENTE;
+            CURSOR cur_servicos IS SELECT ID_SERVICO FROM TB_SERVICOS WHERE ID_CLIENTE = v_id_cliente;
+        BEGIN
+           IF v_ativo_cliente = 0 THEN
+           		FOR linha_cur_servicos IN cur_servicos LOOP
+					UPDATE TB_SERVICOS SET ST_ATIVO = 0 WHERE ID_SERVICO = linha_cur_servicos.ID_SERVICO;
+           		END LOOP;
+           		
+           END IF;
+        END;
+ 
+
+-- 2. Adicionar um log quando o registro da tabela TB_CLIENTES tiver uma alteração.
+
 CREATE OR REPLACE TRIGGER TG_AIUD_TBCLIENTES_LOG
 AFTER INSERT OR UPDATE OR DELETE ON TB_CLIENTES
 FOR EACH ROW
