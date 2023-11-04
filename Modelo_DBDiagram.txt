@@ -33,7 +33,7 @@ Table tb_servicos {
   dt_atualizacao date [not null]
   st_ativo number [not null]
   id_endereco number [not null]
-  id_transportador number [not null]
+  id_transportador number
   id_cliente number [not null]
 }
 
