@@ -33,7 +33,7 @@ CREATE TABLE tb_servicos(
     dt_atualizacao DATE NOT NULL,
     st_ativo NUMBER(1,0) NOT NULL,
     id_endereco NUMBER(19,0) NOT NULL,
-    id_transportador NUMBER(19,0) NOT NULL,
+    id_transportador NUMBER(19,0),
     id_cliente NUMBER(19,0) NOT NULL   
 );
 

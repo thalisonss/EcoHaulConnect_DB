@@ -44,3 +44,16 @@ BEGIN
     INSERT INTO TB_LOGS (id_log, id_pktabela, tp_exec, tx_valorantigo, tx_valornovo, dt_criacao)
     VALUES (SEQ_TB_LOGS.NEXTVAL, :OLD.id_cliente, v_tp_exec, v_tx_valorantigo, v_tx_valornovo, SYSDATE);
 END;
+
+-- 4. Desativar serviços se seu tempo de validade vencer 
+
+CREATE OR REPLACE TRIGGER desativar_servico_vencido
+    AFTER INSERT OR UPDATE OF NR_VALOR, DT_AGENDAMENTO, ID_TRANSPORTADOR ON TB_SERVICOS
+    DECLARE
+        CURSOR cur_servicos_vencidos IS
+            SELECT ID_SERVICO FROM TB_SERVICOS WHERE DT_VENCIMENTO <= SYSDATE;
+        BEGIN 
+            FOR linha_cur_servicos_vencidos IN cur_servicos_vencidos LOOP
+                UPDATE TB_SERVICOS SET ST_ATIVO = 0 WHERE ID_SERVICO = linha_cur_servicos_vencidos.ID_SERVICO;
+            END LOOP;
+        END;
