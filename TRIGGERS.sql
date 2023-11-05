@@ -127,14 +127,21 @@ END;
 -- 3. Atualizar o campo de data de atualização das tabelas
 
 CREATE OR REPLACE TRIGGER atualizar_data_atualizacao
-AFTER UPDATE ON TB_SERVICOS
-FOR EACH ROW
-DECLARE
-    v_id_servico TB_SERVICOS.ID_SERVICO%TYPE := :NEW.ID_SERVICO;
+FOR UPDATE OF nr_valor, cd_confirmacao, dt_agendamento, st_ativo, id_transportador
+ON TB_SERVICOS COMPOUND TRIGGER
+    v_id_servico TB_SERVICOS.ID_SERVICO%TYPE;
 
+AFTER EACH ROW IS
 BEGIN
-    UPDATE TB_SERVICOS SET dt_atualizacao = SYSDATE WHERE ID_SERVICO = v_id_servico; 
-END;
+    v_id_servico := :NEW.ID_SERVICO;
+END AFTER EACH ROW;
+
+AFTER STATEMENT IS
+BEGIN
+    UPDATE TB_SERVICOS SET dt_atualizacao = SYSDATE WHERE ID_SERVICO = v_id_servico;
+END AFTER STATEMENT;
+
+END atualizar_data_atualizacao;
 
 -- 4. Desativar serviços se seu tempo de validade vencer 
 
