@@ -45,6 +45,19 @@ BEGIN
     VALUES (SEQ_TB_LOGS.NEXTVAL, :OLD.id_cliente, v_tp_exec, v_tx_valorantigo, v_tx_valornovo, SYSDATE);
 END;
 
+
+-- 3. Atualizar o campo de data de atualização das tabelas
+
+CREATE OR REPLACE TRIGGER atualizar_data_atualizacao
+AFTER UPDATE ON TB_SERVICOS
+FOR EACH ROW
+DECLARE
+    v_id_servico TB_SERVICOS.ID_SERVICO%TYPE := :NEW.ID_SERVICO;
+
+BEGIN
+    UPDATE TB_SERVICOS SET dt_atualizacao = SYSDATE WHERE ID_SERVICO = v_id_servico; 
+END;
+
 -- 4. Desativar serviços se seu tempo de validade vencer 
 
 CREATE OR REPLACE TRIGGER desativar_servico_vencido
