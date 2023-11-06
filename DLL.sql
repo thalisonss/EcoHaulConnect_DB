@@ -1,26 +1,38 @@
--- Inserir dados na tabela tb_enderecos
 INSERT INTO tb_enderecos (id_endereco, nm_rua, nr_numero, nm_bairro, nm_cidade, ds_uf, nr_cep, nm_complemento, st_ativo, nr_lat, nr_long)
-VALUES (seq_tb_enderecos.nextval, 'Rua Exemplo', '123', 'Bairro Teste', 'Cidade Teste', 'UF', '12345678', 'Complemento', 1, -23.550520, -46.633308);
+VALUES (seq_tb_enderecos.NEXTVAL, 'Rua dos Bobos', '0', 'Vila Esperança', 'São Paulo', 'SP', '00000000', NULL, 1, -23.5505, -46.6333);
 
--- Inserir dados na tabela tb_clientes
+INSERT INTO tb_enderecos (id_endereco, nm_rua, nr_numero, nm_bairro, nm_cidade, ds_uf, nr_cep, nm_complemento, st_ativo, nr_lat, nr_long)
+VALUES (seq_tb_enderecos.NEXTVAL, 'Rua dos Alfeneiros', '4', 'Vila Esperança', 'São Paulo', 'SP', '00000000', 'Apto 3', 1, -23.5505, -46.6333);
+
+INSERT INTO tb_enderecos (id_endereco, nm_rua, nr_numero, nm_bairro, nm_cidade, ds_uf, nr_cep, nm_complemento, st_ativo, nr_lat, nr_long)
+VALUES (seq_tb_enderecos.NEXTVAL, 'Rua dos Girassóis', '10', 'Vila Esperança', 'São Paulo', 'SP', '00000000', NULL, 1, -23.5505, -46.6333);
+
+INSERT INTO tb_enderecos (id_endereco, nm_rua, nr_numero, nm_bairro, nm_cidade, ds_uf, nr_cep, nm_complemento, st_ativo, nr_lat, nr_long)
+VALUES (seq_tb_enderecos.NEXTVAL, 'Rua dos Cravos', '20', 'Vila Esperança', 'São Paulo', 'SP', '00000000', NULL, 1, -23.5505, -46.6333);
+
+UPDATE tb_enderecos
+SET nm_rua = 'Rua Alterada', nr_numero = '21', nm_bairro = 'Vila Alterado', nm_cidade = 'São Paulo', ds_uf = 'SP', nr_cep = '00000000', nm_complemento = 'Alterado', st_ativo = 1, nr_lat = -23.5505, nr_long = -46.6333
+WHERE id_endereco = 1;
+
+DELETE FROM tb_enderecos
+WHERE id_endereco = 2;
+
 INSERT INTO tb_clientes (id_cliente, nm_cliente, nm_email, nr_telefone, nr_cpf, dt_nascimento, ds_senha, st_ativo, id_endereco)
-VALUES (seq_tb_clientes.nextval, 'Nome Cliente', 'cliente@example.com', '123456789', '12345678901', TO_DATE('20000101', 'YYYYMMDD'), 'senha123', 1, seq_tb_enderecos.currval);
+VALUES (seq_tb_clientes.NEXTVAL, 'João Silva', 'joao.silva@gmail.com', '11999999999', '12345678901', TO_DATE('01/01/1990', 'DD/MM/YYYY'), 'senha123', 1, 1);
 
--- Inserir dados na tabela tb_servicos
-INSERT INTO tb_servicos (id_servico, nr_valor, cd_confirmacao, dt_agendamento, dt_criacao, dt_atualizacao, dt_vencimento, st_ativo, id_endereco, id_transportador, id_cliente)
-VALUES (seq_tb_servicos.nextval, 100.00, 'CONF123', TO_DATE('20230101', 'YYYYMMDD'), SYSDATE, SYSDATE, TO_DATE('20230115', 'YYYYMMDD'), 1, seq_tb_enderecos.currval, seq_tb_transportadores.nextval, seq_tb_clientes.currval);
+INSERT INTO tb_clientes (id_cliente, nm_cliente, nm_email, nr_telefone, nr_cpf, dt_nascimento, ds_senha, st_ativo, id_endereco)
+VALUES (seq_tb_clientes.NEXTVAL, 'Maria Souza', 'maria.souza@gmail.com', '11999999998', '10987654321', TO_DATE('02/02/1991', 'DD/MM/YYYY'), 'senha456', 1, 3);
 
--- Inserir dados na tabela tb_transportadores
-INSERT INTO tb_transportadores (id_transportador, nm_transportador, nm_email, nr_cpf, nr_telefone, dt_nascimento, ds_senha, st_ativo, nr_raio_servico, id_endereco)
-VALUES (seq_tb_transportadores.nextval, 'Transportador Teste', 'transportador@example.com', '12345678901', '987654321', TO_DATE('19900101', 'YYYYMMDD'), 'senha456', 1, 10, seq_tb_enderecos.nextval);
+INSERT INTO tb_clientes (id_cliente, nm_cliente, nm_email, nr_telefone, nr_cpf, dt_nascimento, ds_senha, st_ativo, id_endereco)
+VALUES (seq_tb_clientes.NEXTVAL, 'Pedro Santos', 'pedro.santos@gmail.com', '11999999997', '98765432109', TO_DATE('03/03/1992', 'DD/MM/YYYY'), 'senha789', 1, 4);
 
--- Inserir dados na tabela tb_itens
-INSERT INTO tb_itens (id_item, tp_item, nr_altura, nr_comprimento, nr_largura, nr_peso, ds_descricao, id_servico)
-VALUES (seq_tb_itens.nextval, 'Item Teste', 20, 30, 40, 5, 'Descrição do item teste', seq_tb_servicos.currval);
+UPDATE tb_clientes
+SET nm_cliente = 'Ana Maria Cardoso'
+WHERE id_cliente = 1;
 
--- Inserir dados na tabela tb_logs
-INSERT INTO tb_logs (id_log, id_pktabela, tp_exec, tx_valorantigo, tx_valornovo, dt_criacao)
-VALUES (seq_tb_logs.nextval, seq_tb_clientes.currval, 'INSERT', NULL, 'Dados inseridos na tabela tb_clientes', SYSDATE);
+DELETE FROM tb_clientes
+WHERE id_cliente = 3;
+
 
 
 

@@ -1,5 +1,4 @@
 -- 1. Setar atributo “ativo�? de serviços para false quando cliente for desativado 
- 
  CREATE OR REPLACE TRIGGER desativar_servico_de_cliente_inativo
     AFTER UPDATE ON TB_CLIENTES
     FOR EACH ROW
@@ -14,11 +13,9 @@
            		END LOOP;
            		
            END IF;
-        END;
- 
+        END; 
 /
 -- 2. Adicionar um log quando o registro da tabela TB_CLIENTES tiver uma alteração.
-
 CREATE OR REPLACE TRIGGER TG_AIUD_TBCLIENTES_LOG
 AFTER INSERT OR UPDATE OR DELETE ON TB_CLIENTES
 FOR EACH ROW
@@ -126,10 +123,8 @@ BEGIN
     INSERT INTO tb_logs (id_log, id_pktabela, tp_exec, tx_valorantigo, tx_valornovo, dt_criacao, nm_tabela)
     VALUES (seq_tb_logs.NEXTVAL, :OLD.id_transportador, v_tp_exec, v_tx_valorantigo, v_tx_valornovo, SYSTIMESTAMP, v_nm_tabela);
 END;
-
 /
 -- 3. Atualizar o campo de data de atualização das tabelas
-
 CREATE OR REPLACE TRIGGER atualizar_data_atualizacao
 FOR UPDATE OF nr_valor, cd_confirmacao, dt_agendamento, st_ativo, id_transportador
 ON TB_SERVICOS COMPOUND TRIGGER
@@ -148,7 +143,6 @@ END AFTER STATEMENT;
 END atualizar_data_atualizacao;
 /
 -- 4. Desativar serviços se seu tempo de validade vencer 
-
 CREATE OR REPLACE TRIGGER desativar_servico_vencido
     AFTER INSERT OR UPDATE OF NR_VALOR, DT_AGENDAMENTO, ID_TRANSPORTADOR ON TB_SERVICOS
     DECLARE
