@@ -26,6 +26,7 @@ DECLARE
     v_tp_exec CHAR(6);
     v_tx_valorantigo CLOB;
     v_tx_valornovo CLOB;
+    v_nm_tabela VARCHAR2(30) := 'TB_CLIENTES';
 BEGIN
     IF INSERTING THEN
         v_tp_exec := 'INSERT';
@@ -41,8 +42,8 @@ BEGIN
         v_tx_valornovo := NULL;
     END IF;
     
-    INSERT INTO TB_LOGS (id_log, id_pktabela, tp_exec, tx_valorantigo, tx_valornovo, dt_criacao)
-    VALUES (SEQ_TB_LOGS.NEXTVAL, :OLD.id_cliente, v_tp_exec, v_tx_valorantigo, v_tx_valornovo, SYSDATE);
+    INSERT INTO TB_LOGS (id_log, id_pktabela, tp_exec, tx_valorantigo, tx_valornovo, dt_criacao, nm_tabela)
+    VALUES (SEQ_TB_LOGS.NEXTVAL, :OLD.id_cliente, v_tp_exec, v_tx_valorantigo, v_tx_valornovo, SYSDATE, v_nm_tabela);
 END;
 /
 CREATE OR REPLACE TRIGGER TG_AIUD_TBENDERECOS_LOG 
@@ -52,6 +53,7 @@ DECLARE
     v_tp_exec CHAR(6);
     v_tx_valorantigo CLOB;
     v_tx_valornovo CLOB;
+    v_nm_tabela VARCHAR2(30) := 'TB_ENDERECOS';
 BEGIN
     IF INSERTING THEN
         v_tp_exec := 'INSERT';
@@ -67,8 +69,8 @@ BEGIN
         v_tx_valornovo := NULL;
     END IF;
 
-    INSERT INTO tb_logs (id_log, id_pktabela, tp_exec, tx_valorantigo, tx_valornovo, dt_criacao)
-    VALUES (seq_tb_logs.NEXTVAL, :OLD.id_endereco, v_tp_exec, v_tx_valorantigo, v_tx_valornovo, SYSDATE);
+    INSERT INTO tb_logs (id_log, id_pktabela, tp_exec, tx_valorantigo, tx_valornovo, dt_criacao, nm_tabela)
+    VALUES (seq_tb_logs.NEXTVAL, :OLD.id_endereco, v_tp_exec, v_tx_valorantigo, v_tx_valornovo, SYSDATE, v_nm_tabela);
 END;
 /
 CREATE OR REPLACE TRIGGER TG_AIUD_TBSERVICOS_LOG
@@ -78,6 +80,7 @@ DECLARE
     v_tp_exec CHAR(6);
     v_tx_valorantigo CLOB;
     v_tx_valornovo CLOB;
+    v_nm_tabela VARCHAR2(30) := 'TB_SERVICOS';
 BEGIN
     IF INSERTING THEN
         v_tp_exec := 'INSERT';
@@ -93,8 +96,8 @@ BEGIN
         v_tx_valornovo := NULL;
     END IF;
 
-    INSERT INTO tb_logs (id_log, id_pktabela, tp_exec, tx_valorantigo, tx_valornovo, dt_criacao)
-    VALUES (seq_tb_logs.NEXTVAL, :OLD.id_servico, v_tp_exec, v_tx_valorantigo, v_tx_valornovo, SYSDATE);
+    INSERT INTO tb_logs (id_log, id_pktabela, tp_exec, tx_valorantigo, tx_valornovo, dt_criacao, nm_tabela)
+    VALUES (seq_tb_logs.NEXTVAL, :OLD.id_servico, v_tp_exec, v_tx_valorantigo, v_tx_valornovo, SYSDATE, v_nm_tabela);
 END;
 /
 CREATE OR REPLACE TRIGGER TG_AIUD_TBTRANSPORTADORES_LOG
@@ -104,6 +107,7 @@ DECLARE
     v_tp_exec CHAR(6);
     v_tx_valorantigo CLOB;
     v_tx_valornovo CLOB;
+    v_nm_tabela VARCHAR2(30) := 'TB_TRANSPORTADORES';
 BEGIN   
     IF INSERTING THEN
         v_tp_exec := 'INSERT';
@@ -119,8 +123,8 @@ BEGIN
         v_tx_valornovo := NULL;
     END IF;
 
-    INSERT INTO tb_logs (id_log, id_pktabela, tp_exec, tx_valorantigo, tx_valornovo, dt_criacao)
-    VALUES (seq_tb_logs.NEXTVAL, :OLD.id_transportador, v_tp_exec, v_tx_valorantigo, v_tx_valornovo, SYSTIMESTAMP);
+    INSERT INTO tb_logs (id_log, id_pktabela, tp_exec, tx_valorantigo, tx_valornovo, dt_criacao, nm_tabela)
+    VALUES (seq_tb_logs.NEXTVAL, :OLD.id_transportador, v_tp_exec, v_tx_valorantigo, v_tx_valornovo, SYSTIMESTAMP, v_nm_tabela);
 END;
 
 /

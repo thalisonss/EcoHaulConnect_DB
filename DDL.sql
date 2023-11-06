@@ -64,6 +64,7 @@ CREATE TABLE tb_itens(
 
 CREATE TABLE tb_logs(
     id_log NUMBER(19,0) PRIMARY KEY,
+    nm_tabela VARCHAR2(30),
     id_pktabela NUMBER(19,0),
     tp_exec CHAR(6),
     tx_valorantigo CLOB,
