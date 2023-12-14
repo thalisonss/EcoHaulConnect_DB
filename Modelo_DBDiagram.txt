@@ -6,6 +6,7 @@ Table tb_clientes {
   nr_cpf varchar(11) [not null, unique]
   dt_nascimento date [not null]
   ds_senha varchar(150) [not null]
+  st_status char(2)
   st_ativo number [not null]
   id_endereco number [not null]
 }
@@ -31,6 +32,8 @@ Table tb_servicos {
   dt_agendamento date [not null]
   dt_criacao date [not null]
   dt_atualizacao date [not null]
+  dt_conclusao date
+  st_conclusao CHAR(2)
   st_ativo number [not null]
   id_endereco number [not null]
   id_transportador number
@@ -45,6 +48,7 @@ Table tb_transportadores {
   nr_telefone varchar(11) [not null]
   dt_nascimento date [not null]
   ds_senha varchar(150) [not null]
+  st_status char(2)
   st_ativo number [not null]
   nr_raio_servico number [not null]
   id_endereco number [not null]
@@ -68,6 +72,14 @@ Table tb_logs {
   tx_valorantigo CLOB
   tx_valornovo CLOB
   dt_criacao DATE
+}
+
+Table tb_descricoes {
+  id_descricao CHAR(2) [not null]
+  nm_atributo varchar(30) [not null]
+  nm_descricao varchar(30) [not null]
+  st_ativo number [not null]
+  dt_atualizacao DATE
 }
 
 Ref: tb_clientes.id_endereco > tb_enderecos.id_endereco
