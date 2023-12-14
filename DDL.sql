@@ -90,6 +90,23 @@ CREATE TABLE tb_logs(
     dt_criacao DATE
 );
 
+CREATE TABLE tb_logs(
+    id_log NUMBER(19,0) PRIMARY KEY,
+    nm_tabela VARCHAR2(30),
+    id_pktabela NUMBER(19,0),
+    tp_exec CHAR(6),
+    tx_valorantigo CLOB,
+    tx_valornovo CLOB,
+    dt_criacao DATE
+);
+
+CREATE TABLE tb_descricoes(
+    id_descricao CHAR(2) NOT NULL,
+    nm_atributo VARCHAR2(30) NOT NULL,
+    nm_descricao VARCHAR2(30) NOT NULL,
+    st_ativo NUMBER(1,0) NOT NULL,
+    dt_atualizacao DATE NOT NULL
+);
 
 -- O atributo id_endereco em tb_cliente é uma chave estrangeira
 -- Ele está ligado com id_endereco da tb_endereco

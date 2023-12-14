@@ -185,6 +185,31 @@ BEGIN
     -- Reinicializa a variável seq_count para a próxima verificação
     table_count := 0;
     
+    -- Verifica e cria a tabela tb_descricoes
+    SELECT COUNT(*)
+    INTO table_count
+    FROM user_tables
+    WHERE table_name = 'TB_DESCRICOES';
+
+    IF table_count > 0 THEN
+        EXECUTE IMMEDIATE 'DROP TABLE TB_DESCRICOES CASCADE CONSTRAINTS';
+        DBMS_OUTPUT.PUT_LINE('Tabela TB_DESCRICOES removida.');
+    END IF;
+
+    EXECUTE IMMEDIATE '
+    CREATE TABLE tb_descricoes(
+        id_descricao CHAR(2) NOT NULL,
+        nm_atributo VARCHAR2(30) NOT NULL,
+        nm_descricao VARCHAR2(30) NOT NULL,
+        st_ativo NUMBER(1,0) NOT NULL,
+        dt_atualizacao DATE NOT NULL
+    )';
+
+    DBMS_OUTPUT.PUT_LINE('Tabela TB_DESCRICOES criada.');
+    
+    -- Reinicializa a variável seq_count para a próxima verificação
+    table_count := 0;
+    
     -- Restrição de chave estrangeira na tabela tb_clientes
     SELECT COUNT(*)
     INTO constraint_count
@@ -657,3 +682,25 @@ VALUES (seq_tb_itens.NEXTVAL, 'Moveis', 90, 90, 40, 20, 'Cômoda Sapateira 1 Port
 
 INSERT INTO tb_itens (id_item, tp_item, nr_altura, nr_comprimento, nr_largura, nr_peso, ds_descricao, id_servico)
 VALUES (seq_tb_itens.NEXTVAL, 'Moveis', 116, 136, 45, 38, 'Cômoda 8 Gavetas Doble Albatroz Móveis', 4);
+
+--TB_DESCRICOES
+INSERT INTO tb_descricao (id_descricao, nm_atributo, nm_descricao, st_ativo, dt_atualizacao)
+VALUES ('01', 'st_status', 'EM ANALISE', 1, SYSTIMESTAMP);
+
+INSERT INTO tb_descricao (id_descricao, nm_atributo, nm_descricao, st_ativo, dt_atualizacao)
+VALUES ('02', 'st_status', 'APROVADO', 1, SYSTIMESTAMP);
+
+INSERT INTO tb_descricao (id_descricao, nm_atributo, nm_descricao, st_ativo, dt_atualizacao)
+VALUES ('03', 'st_status', 'REPROVADO', 1, SYSTIMESTAMP);
+
+INSERT INTO tb_descricao (id_descricao, nm_atributo, nm_descricao, st_ativo, dt_atualizacao)
+VALUES ('04', 'st_status', 'BANIDO', 1, SYSTIMESTAMP);
+
+INSERT INTO tb_descricao (id_descricao, nm_atributo, nm_descricao, st_ativo, dt_atualizacao)
+VALUES ('04', 'st_status', 'BANIDO', 1, SYSTIMESTAMP);
+
+INSERT INTO tb_descricao (id_descricao, nm_atributo, nm_descricao, st_ativo, dt_atualizacao)
+VALUES ('01', 'st_conclusao', 'CANCELADO', 1, SYSTIMESTAMP);
+
+INSERT INTO tb_descricao (id_descricao, nm_atributo, nm_descricao, st_ativo, dt_atualizacao)
+VALUES ('02', 'st_conclusao', 'CONCLUIDO', 1, SYSTIMESTAMP);
