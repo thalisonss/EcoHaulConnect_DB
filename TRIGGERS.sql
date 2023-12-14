@@ -28,14 +28,14 @@ BEGIN
     IF INSERTING THEN
         v_tp_exec := 'INSERT';
         v_tx_valorantigo := NULL;
-        v_tx_valornovo := :NEW.id_cliente || ',' || :NEW.nm_cliente || ',' || :NEW.nm_email || ',' || :NEW.nr_telefone || ',' || :NEW.nr_cpf || ',' || TO_CHAR(:NEW.dt_nascimento, 'YYYY-MM-DD') || ',' || :NEW.ds_senha || ',' || :NEW.st_ativo || ',' || :NEW.id_endereco;
+        v_tx_valornovo := :NEW.id_cliente || ',' || :NEW.nm_cliente || ',' || :NEW.nm_email || ',' || :NEW.nr_telefone || ',' || :NEW.nr_cpf || ',' || TO_CHAR(:NEW.dt_nascimento, 'YYYY-MM-DD') || ',' || :NEW.ds_senha || ',' || :NEW.st_status || ',' || :NEW.st_ativo || ',' || :NEW.id_endereco;
     ELSIF UPDATING THEN
         v_tp_exec := 'UPDATE';
-        v_tx_valorantigo := :OLD.id_cliente || ',' || :OLD.nm_cliente || ',' || :OLD.nm_email || ',' || :OLD.nr_telefone || ',' || :OLD.nr_cpf || ',' || TO_CHAR(:OLD.dt_nascimento, 'YYYY-MM-DD') || ',' || :OLD.ds_senha || ',' || :OLD.st_ativo || ',' || :OLD.id_endereco;
-        v_tx_valornovo := :NEW.id_cliente || ',' || :NEW.nm_cliente || ',' || :NEW.nm_email || ',' || :NEW.nr_telefone || ',' || :NEW.nr_cpf || ',' || TO_CHAR(:NEW.dt_nascimento, 'YYYY-MM-DD') || ',' || :NEW.ds_senha || ',' || :NEW.st_ativo || ',' || :NEW.id_endereco;
+        v_tx_valorantigo := :OLD.id_cliente || ',' || :OLD.nm_cliente || ',' || :OLD.nm_email || ',' || :OLD.nr_telefone || ',' || :OLD.nr_cpf || ',' || TO_CHAR(:OLD.dt_nascimento, 'YYYY-MM-DD') || ',' || :OLD.ds_senha || ',' || :OLD.st_status || ',' || :OLD.st_ativo || ',' || :OLD.id_endereco;
+        v_tx_valornovo := :NEW.id_cliente || ',' || :NEW.nm_cliente || ',' || :NEW.nm_email || ',' || :NEW.nr_telefone || ',' || :NEW.nr_cpf || ',' || TO_CHAR(:NEW.dt_nascimento, 'YYYY-MM-DD') || ',' || :NEW.ds_senha || ',' || :NEW.st_status || ',' || :NEW.st_ativo || ',' || :NEW.id_endereco;
     ELSE
         v_tp_exec := 'DELETE';
-        v_tx_valorantigo := :OLD.id_cliente || ',' || :OLD.nm_cliente || ',' || :OLD.nm_email || ',' || :OLD.nr_telefone || ',' || :OLD.nr_cpf || ',' || TO_CHAR(:OLD.dt_nascimento, 'YYYY-MM-DD') || ',' || :OLD.ds_senha || ',' || :OLD.st_ativo || ',' || :OLD.id_endereco;
+        v_tx_valorantigo := :OLD.id_cliente || ',' || :OLD.nm_cliente || ',' || :OLD.nm_email || ',' || :OLD.nr_telefone || ',' || :OLD.nr_cpf || ',' || TO_CHAR(:OLD.dt_nascimento, 'YYYY-MM-DD') || ',' || :OLD.ds_senha || ',' || :OLD.st_status || ',' || :OLD.st_ativo || ',' || :OLD.id_endereco;
         v_tx_valornovo := NULL;
     END IF;
     
@@ -82,14 +82,14 @@ BEGIN
     IF INSERTING THEN
         v_tp_exec := 'INSERT';
         v_tx_valorantigo := NULL;
-        v_tx_valornovo := :NEW.id_servico || ',' || :NEW.nr_valor || ',' || :NEW.cd_confirmacao || ',' || TO_CHAR(:NEW.dt_agendamento, 'YYYY-MM-DD') || ',' || TO_CHAR(:NEW.dt_criacao, 'YYYY-MM-DD') || ',' || TO_CHAR(:NEW.dt_atualizacao, 'YYYY-MM-DD') || ',' || :NEW.st_ativo || ',' || :NEW.id_endereco || ',' || :NEW.id_transportador || ',' || :NEW.id_cliente;
+        v_tx_valornovo := :NEW.id_servico || ',' || :NEW.nr_valor || ',' || :NEW.cd_confirmacao || ',' || TO_CHAR(:NEW.dt_agendamento, 'YYYY-MM-DD') || ',' || TO_CHAR(:NEW.dt_criacao, 'YYYY-MM-DD') || ',' || TO_CHAR(:NEW.dt_atualizacao, 'YYYY-MM-DD') || ',' || TO_CHAR(:NEW.dt_vencimento, 'YYYY-MM-DD') || ',' || TO_CHAR(:NEW.dt_aceitacao, 'YYYY-MM-DD') || ',' || :NEW.st_conclusao || ',' || :NEW.st_ativo || ',' || :NEW.id_endereco || ',' || :NEW.id_transportador || ',' || :NEW.id_cliente;
     ELSIF UPDATING THEN
         v_tp_exec := 'UPDATE';
-        v_tx_valorantigo := :OLD.id_servico || ',' || :OLD.nr_valor || ',' || :OLD.cd_confirmacao || ',' || TO_CHAR(:OLD.dt_agendamento, 'YYYY-MM-DD') || ',' || TO_CHAR(:OLD.dt_criacao, 'YYYY-MM-DD') || ',' || TO_CHAR(:OLD.dt_atualizacao, 'YYYY-MM-DD') || ',' || :OLD.st_ativo || ',' || :OLD.id_endereco || ',' || :OLD.id_transportador || ',' || :OLD.id_cliente;
-        v_tx_valornovo := :NEW.id_servico || ',' || :NEW.nr_valor || ',' || :NEW.cd_confirmacao || ',' || TO_CHAR(:NEW.dt_agendamento, 'YYYY-MM-DD') || ',' || TO_CHAR(:NEW.dt_criacao, 'YYYY-MM-DD') || ',' || TO_CHAR(:NEW.dt_atualizacao, 'YYYY-MM-DD') || ',' || :NEW.st_ativo || ',' || :NEW.id_endereco || ',' || :NEW.id_transportador || ',' || :NEW.id_cliente;
+        v_tx_valorantigo := :OLD.id_servico || ',' || :OLD.nr_valor || ',' || :OLD.cd_confirmacao || ',' || TO_CHAR(:OLD.dt_agendamento, 'YYYY-MM-DD') || ',' || TO_CHAR(:OLD.dt_criacao, 'YYYY-MM-DD') || ',' || TO_CHAR(:OLD.dt_atualizacao, 'YYYY-MM-DD') || ',' || TO_CHAR(:OLD.dt_vencimento, 'YYYY-MM-DD') || ',' || TO_CHAR(:OLD.dt_aceitacao, 'YYYY-MM-DD') || ',' || :OLD.st_conclusao || ',' || :OLD.st_ativo || ',' || :OLD.id_endereco || ',' || :OLD.id_transportador || ',' || :OLD.id_cliente;
+        v_tx_valornovo := :NEW.id_servico || ',' || :NEW.nr_valor || ',' || :NEW.cd_confirmacao || ',' || TO_CHAR(:NEW.dt_agendamento, 'YYYY-MM-DD') || ',' || TO_CHAR(:NEW.dt_criacao, 'YYYY-MM-DD') || ',' || TO_CHAR(:NEW.dt_atualizacao, 'YYYY-MM-DD') || ',' || TO_CHAR(:NEW.dt_vencimento, 'YYYY-MM-DD') || ',' || TO_CHAR(:NEW.dt_aceitacao, 'YYYY-MM-DD') || ',' || :NEW.st_conclusao || ',' || :NEW.st_ativo || ',' || :NEW.id_endereco || ',' || :NEW.id_transportador || ',' || :NEW.id_cliente;
     ELSE
         v_tp_exec := 'DELETE';
-        v_tx_valorantigo := :OLD.id_servico || ',' || :OLD.nr_valor || ',' || :OLD.cd_confirmacao || ',' || TO_CHAR(:OLD.dt_agendamento, 'YYYY-MM-DD') || ',' || TO_CHAR(:OLD.dt_criacao, 'YYYY-MM-DD') || ',' || TO_CHAR(:OLD.dt_atualizacao, 'YYYY-MM-DD') || ',' || :OLD.st_ativo || ',' || :OLD.id_endereco || ',' || :OLD.id_transportador || ',' || :OLD.id_cliente;
+        v_tx_valorantigo := :OLD.id_servico || ',' || :OLD.nr_valor || ',' || :OLD.cd_confirmacao || ',' || TO_CHAR(:OLD.dt_agendamento, 'YYYY-MM-DD') || ',' || TO_CHAR(:OLD.dt_criacao, 'YYYY-MM-DD') || ',' || TO_CHAR(:OLD.dt_atualizacao, 'YYYY-MM-DD') || ',' || TO_CHAR(:OLD.dt_vencimento, 'YYYY-MM-DD') || ',' || TO_CHAR(:OLD.dt_aceitacao, 'YYYY-MM-DD') || ',' || :OLD.st_conclusao || ',' || :OLD.st_ativo || ',' || :OLD.id_endereco || ',' || :OLD.id_transportador || ',' || :OLD.id_cliente;
         v_tx_valornovo := NULL;
     END IF;
 
@@ -109,14 +109,14 @@ BEGIN
     IF INSERTING THEN
         v_tp_exec := 'INSERT';
         v_tx_valorantigo := NULL;
-        v_tx_valornovo := :NEW.id_transportador || ',' || :NEW.nm_transportador || ',' || :NEW.nm_email || ',' || :NEW.nr_cpf || ',' || :NEW.nr_telefone || ',' || TO_CHAR(:NEW.dt_nascimento, 'YYYY-MM-DD') || ',' || :NEW.ds_senha || ',' || :NEW.st_ativo || ',' || :NEW.nr_raio_servico || ',' || :NEW.id_endereco;
+        v_tx_valornovo := :NEW.id_transportador || ',' || :NEW.nm_transportador || ',' || :NEW.nm_email || ',' || :NEW.nr_cpf || ',' || :NEW.nr_telefone || ',' || TO_CHAR(:NEW.dt_nascimento, 'YYYY-MM-DD') || ',' || :NEW.ds_senha || ',' || :NEW.st_status || ',' || :NEW.st_ativo || ',' || :NEW.nr_raio_servico || ',' || :NEW.id_endereco;
     ELSIF UPDATING THEN
         v_tp_exec := 'UPDATE';
-        v_tx_valorantigo := :OLD.id_transportador || ',' || :OLD.nm_transportador || ',' || :OLD.nm_email || ',' || :OLD.nr_cpf || ',' || :OLD.nr_telefone || ',' || TO_CHAR(:OLD.dt_nascimento, 'YYYY-MM-DD') || ',' || :OLD.ds_senha || ',' || :OLD.st_ativo || ',' || :OLD.nr_raio_servico || ',' || :OLD.id_endereco;
-        v_tx_valornovo := :NEW.id_transportador || ',' || :NEW.nm_transportador || ',' || :NEW.nm_email || ',' || :NEW.nr_cpf || ',' || :NEW.nr_telefone || ',' || TO_CHAR(:NEW.dt_nascimento, 'YYYY-MM-DD') || ',' || :NEW.ds_senha || ',' || :NEW.st_ativo || ',' || :NEW.nr_raio_servico || ',' || :NEW.id_endereco;
+        v_tx_valorantigo := :OLD.id_transportador || ',' || :OLD.nm_transportador || ',' || :OLD.nm_email || ',' || :OLD.nr_cpf || ',' || :OLD.nr_telefone || ',' || TO_CHAR(:OLD.dt_nascimento, 'YYYY-MM-DD') || ',' || :OLD.ds_senha || ',' || :OLD.st_status || ',' || :OLD.st_ativo || ',' || :OLD.nr_raio_servico || ',' || :OLD.id_endereco;
+        v_tx_valornovo := :NEW.id_transportador || ',' || :NEW.nm_transportador || ',' || :NEW.nm_email || ',' || :NEW.nr_cpf || ',' || :NEW.nr_telefone || ',' || TO_CHAR(:NEW.dt_nascimento, 'YYYY-MM-DD') || ',' || :NEW.ds_senha || ',' || :NEW.st_status || ',' ||  :NEW.st_ativo || ',' || :NEW.nr_raio_servico || ',' || :NEW.id_endereco;
     ELSE
         v_tp_exec := 'DELETE';
-        v_tx_valorantigo := :OLD.id_transportador || ',' || :OLD.nm_transportador || ',' || :OLD.nm_email || ',' || :OLD.nr_cpf || ',' || :OLD.nr_telefone || ',' || TO_CHAR(:OLD.dt_nascimento, 'YYYY-MM-DD') || ',' || :OLD.ds_senha || ',' || :OLD.st_ativo || ',' || :OLD.nr_raio_servico || ',' || :OLD.id_endereco;
+        v_tx_valorantigo := :OLD.id_transportador || ',' || :OLD.nm_transportador || ',' || :OLD.nm_email || ',' || :OLD.nr_cpf || ',' || :OLD.nr_telefone || ',' || TO_CHAR(:OLD.dt_nascimento, 'YYYY-MM-DD') || ',' || :OLD.ds_senha || ',' || :OLD.st_status || ',' || :OLD.st_ativo || ',' || :OLD.nr_raio_servico || ',' || :OLD.id_endereco;
         v_tx_valornovo := NULL;
     END IF;
 
