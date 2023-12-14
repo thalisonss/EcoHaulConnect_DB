@@ -38,17 +38,17 @@ INSERT INTO tb_transportadores (id_transportador, nm_transportador, nm_email, nr
 VALUES (seq_tb_transportadores.NEXTVAL, 'Alexandre Gouveia', 'gou_alex@gmail.com', '15995175335', '11965445685', TO_DATE('30/12/1980', 'DD/MM/YYYY'), 'teste', '02', 1, 40, 6);
 
 --TB_SERVICOS
-INSERT INTO tb_servicos (id_servico, nr_valor, cd_confirmacao, dt_agendamento, dt_vencimento, dt_aceitacao, st_conclusao, st_ativo, id_endereco, id_transportador, id_cliente)
-VALUES (seq_tb_servicos.NEXTVAL, 100.50, '21A35B', TO_DATE('15/12/2023', 'DD/MM/YYYY'), TO_DATE('20/12/2023', 'DD/MM/YYYY'), TO_TIMESTAMP('14/12/2023 22:10:11.996', 'DD/MM/YYYY HH24:MI:SS.FF3'), '01', 1, 1, 1, 1);
+INSERT INTO tb_servicos (id_servico, nr_valor, cd_confirmacao, dt_agendamento, dt_criacao, dt_vencimento, dt_aceitacao, st_conclusao, st_ativo, id_endereco, id_transportador, id_cliente, dt_atualizacao)
+VALUES (seq_tb_servicos.NEXTVAL, 100.50, '21A35B', TO_DATE('15/12/2023', 'DD/MM/YYYY'), TO_TIMESTAMP('14/12/2023 22:10:11.996', 'DD/MM/YYYY HH24:MI:SS.FF3'), TO_DATE('20/12/2023', 'DD/MM/YYYY'), TO_TIMESTAMP('14/12/2023 22:10:11.996', 'DD/MM/YYYY HH24:MI:SS.FF3'), '01', 1, 1, 1, 1, SYSTIMESTAMP);
 
-INSERT INTO tb_servicos (id_servico, nr_valor, cd_confirmacao, dt_agendamento, dt_vencimento, dt_aceitacao, st_conclusao, st_ativo, id_endereco, id_transportador, id_cliente)
-VALUES (seq_tb_servicos.NEXTVAL, 21.53, 'BB21AA', TO_DATE('12/12/2023', 'DD/MM/YYYY'), TO_DATE('17/12/2023', 'DD/MM/YYYY'), TO_TIMESTAMP('05/12/2023 05:29:59.999', 'DD/MM/YYYY HH24:MI:SS.FF3'), NULL, 1, 2, 1, 2);
+INSERT INTO tb_servicos (id_servico, nr_valor, cd_confirmacao, dt_agendamento, dt_criacao, dt_vencimento, dt_aceitacao, st_conclusao, st_ativo, id_endereco, id_transportador, id_cliente, dt_atualizacao)
+VALUES (seq_tb_servicos.NEXTVAL, 21.53, 'BB21AA', TO_DATE('12/12/2023', 'DD/MM/YYYY'), TO_TIMESTAMP('14/12/2023 22:10:11.996', 'DD/MM/YYYY HH24:MI:SS.FF3'), TO_DATE('17/12/2023', 'DD/MM/YYYY'), TO_TIMESTAMP('05/12/2023 05:29:59.999', 'DD/MM/YYYY HH24:MI:SS.FF3'), NULL, 1, 2, 1, 2, SYSTIMESTAMP);
 
-INSERT INTO tb_servicos (id_servico, nr_valor, cd_confirmacao, dt_agendamento, dt_vencimento, dt_aceitacao, st_conclusao, st_ativo, id_endereco, id_transportador, id_cliente)
-VALUES (seq_tb_servicos.NEXTVAL, 10.93, 'ZZZ214', TO_DATE('11/12/2023', 'DD/MM/YYYY'), TO_DATE('16/12/2023', 'DD/MM/YYYY'), TO_TIMESTAMP('09/12/2023 09:12:33.898', 'DD/MM/YYYY HH24:MI:SS.FF3'), '02', 1, 3, 2, 3);
+INSERT INTO tb_servicos (id_servico, nr_valor, cd_confirmacao, dt_agendamento, dt_criacao, dt_vencimento, dt_aceitacao, st_conclusao, st_ativo, id_endereco, id_transportador, id_cliente, dt_atualizacao)
+VALUES (seq_tb_servicos.NEXTVAL, 10.93, 'ZZZ214', TO_DATE('11/12/2023', 'DD/MM/YYYY'), TO_TIMESTAMP('14/12/2023 22:10:11.996', 'DD/MM/YYYY HH24:MI:SS.FF3'), TO_DATE('16/12/2023', 'DD/MM/YYYY'), TO_TIMESTAMP('09/12/2023 09:12:33.898', 'DD/MM/YYYY HH24:MI:SS.FF3'), '02', 1, 3, 2, 3, SYSTIMESTAMP);
 
-INSERT INTO tb_servicos (id_servico, nr_valor, cd_confirmacao, dt_agendamento, dt_vencimento, dt_aceitacao, st_conclusao, st_ativo, id_endereco, id_transportador, id_cliente)
-VALUES (seq_tb_servicos.NEXTVAL, 9.05, '995TY1', TO_DATE('25/12/2023', 'DD/MM/YYYY'), TO_DATE('30/12/2023', 'DD/MM/YYYY'), TO_TIMESTAMP('22/12/2023 12:34:56.789', 'DD/MM/YYYY HH24:MI:SS.FF3'), '01',  1, 4, 2, 4);
+INSERT INTO tb_servicos (id_servico, nr_valor, cd_confirmacao, dt_agendamento, dt_criacao, dt_vencimento, dt_aceitacao, st_conclusao, st_ativo, id_endereco, id_transportador, id_cliente, dt_atualizacao)
+VALUES (seq_tb_servicos.NEXTVAL, 9.05, '995TY1', TO_DATE('25/12/2023', 'DD/MM/YYYY'), TO_TIMESTAMP('14/12/2023 22:10:11.996', 'DD/MM/YYYY HH24:MI:SS.FF3'), TO_DATE('30/12/2023', 'DD/MM/YYYY'), TO_TIMESTAMP('22/12/2023 12:34:56.789', 'DD/MM/YYYY HH24:MI:SS.FF3'), '01',  1, 4, 2, 4, SYSTIMESTAMP);
 
 --TB_ITENS
 INSERT INTO tb_itens (id_item, tp_item, nr_altura, nr_comprimento, nr_largura, nr_peso, ds_descricao, id_servico)
