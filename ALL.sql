@@ -87,6 +87,7 @@ BEGIN
         dt_atualizacao DATE NOT NULL,
         dt_vencimento DATE NOT NULL,
         dt_aceitacao DATE,
+        dt_cancelamento DATE,
         st_conclusao CHAR(2),
         st_ativo NUMBER(1,0) NOT NULL,
         id_endereco NUMBER(19,0) NOT NULL,
@@ -692,9 +693,6 @@ VALUES ('02', 'st_status', 'APROVADO', 1, SYSTIMESTAMP);
 
 INSERT INTO tb_descricao (id_descricao, nm_atributo, nm_descricao, st_ativo, dt_atualizacao)
 VALUES ('03', 'st_status', 'REPROVADO', 1, SYSTIMESTAMP);
-
-INSERT INTO tb_descricao (id_descricao, nm_atributo, nm_descricao, st_ativo, dt_atualizacao)
-VALUES ('04', 'st_status', 'BANIDO', 1, SYSTIMESTAMP);
 
 INSERT INTO tb_descricao (id_descricao, nm_atributo, nm_descricao, st_ativo, dt_atualizacao)
 VALUES ('04', 'st_status', 'BANIDO', 1, SYSTIMESTAMP);

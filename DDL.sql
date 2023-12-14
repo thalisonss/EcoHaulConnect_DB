@@ -48,6 +48,7 @@ CREATE TABLE tb_servicos(
     dt_atualizacao DATE NOT NULL,
     dt_vencimento DATE NOT NULL,
     dt_aceitacao DATE,
+    dt_cancelamento DATE,
     st_conclusao CHAR(2),
     st_ativo NUMBER(1,0) NOT NULL,
     id_endereco NUMBER(19,0) NOT NULL,
