@@ -21,8 +21,8 @@ Table tb_enderecos {
   nr_cep varchar(8) [not null]
   nm_complemento varchar(100)
   st_ativo number [not null]
-  nr_lat float [not null]
-  nr_long float [not null]
+  nr_lat float 
+  nr_long float 
 }
 
 Table tb_servicos {
@@ -35,9 +35,16 @@ Table tb_servicos {
   dt_conclusao date
   st_conclusao CHAR(2)
   st_ativo number [not null]
+  ds_servico varchar(255)
   id_endereco number [not null]
   id_transportador number
   id_cliente number [not null]
+}
+
+Table tb_imagens {
+  id_imagem number [pk]
+  url_imagem varchar(200) [not null]
+  id_item number [pk]
 }
 
 Table tb_transportadores {
@@ -87,3 +94,4 @@ Ref: tb_servicos.id_cliente > tb_clientes.id_cliente
 Ref: tb_servicos.id_endereco > tb_enderecos.id_endereco
 Ref: tb_servicos.id_transportador > tb_transportadores.id_transportador
 Ref: tb_itens.id_servico > tb_servicos.id_servico
+Ref: tb_imagens.id_item > tb_item.id_item
