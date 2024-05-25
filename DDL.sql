@@ -35,8 +35,8 @@ CREATE TABLE tb_enderecos (
     nr_cep VARCHAR2(8) NOT NULL,
     nm_complemento VARCHAR2(100),
 	st_ativo NUMBER(1,0) NOT NULL,
-	nr_lat FLOAT(53) NOT NULL,
-	nr_long FLOAT(53) NOT NULL
+	nr_lat FLOAT(53),
+	nr_long FLOAT(53)
 );
 
 CREATE TABLE tb_servicos(
@@ -51,9 +51,10 @@ CREATE TABLE tb_servicos(
     dt_cancelamento DATE,
     st_conclusao CHAR(2),
     st_ativo NUMBER(1,0) NOT NULL,
+    ds_descricao VARCHAR2(255),
     id_endereco NUMBER(19,0) NOT NULL,
     id_transportador NUMBER(19,0),
-    id_cliente NUMBER(19,0) NOT NULL   
+    id_cliente NUMBER(19,0) NOT NULL
 );
 
 CREATE TABLE tb_transportadores(
@@ -79,6 +80,12 @@ CREATE TABLE tb_itens(
     nr_peso NUMBER(10,0),
     ds_descricao VARCHAR2(255),
     id_servico NUMBER(19,0) NOT NULL
+);
+
+CREATE TABLE tb_imagens(
+    id_imagem NUMBER(19,0) PRIMARY KEY,
+    url_imagem VARCHAR2(200) NOT NULL,
+    id_item NUMBER(19,0) NOT NULL
 );
 
 CREATE TABLE tb_logs(
@@ -149,6 +156,11 @@ ADD CONSTRAINT fk_tb_itens_tb_transportadores
 FOREIGN KEY (id_servico)
 REFERENCES tb_servicos(id_servico);
 
+ALTER TABLE tb_imagens
+ADD CONSTRAINT fk_tb_imagens_tb_itens
+FOREIGN KEY (id_item)
+REFERENCES tb_it](id_item);
+
  
 -- SEQ tb_clientes
 CREATE SEQUENCE seq_tb_clientes
@@ -184,6 +196,13 @@ START WITH 1
 INCREMENT BY 1
 NOMAXVALUE
 NOCYCLE;
+
+--SEQ tb_imagens
+CREATE SEQUENCE seq_tb_imagens
+START WITH 1
+INCREMENT BY 1
+NOMAXVALUE
+NOCYCLE
 
 -- SEQ tb_logs
 CREATE SEQUENCE seq_tb_logs
